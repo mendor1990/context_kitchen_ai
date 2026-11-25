@@ -40,4 +40,4 @@ verified: {YYYY-MM-DD}
 
 ## Gotchas
 
-- {Symptom → cause → fix.}
+- {Symptom → cause → fix; how the fix was proven; what did not work.}

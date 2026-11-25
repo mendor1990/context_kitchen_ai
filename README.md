@@ -14,7 +14,7 @@ when the kit is updated there.
 | File | What it is |
 |---|---|
 | [docs-system.md](docs-system.md) | The spec: layout, doc types, front matter, the working loop, decisions, todo, memory policy, checks, bootstrap |
-| [templates/](templates/) | Starting points: root `CLAUDE.md`, overview, architecture, feature, subproject README, screens, decisions, todo, path rule |
+| [templates/](templates/) | Starting points: root `CLAUDE.md`, overview, architecture, feature, subproject README, screens, decisions, todo, test plan, path rule |
 | [tools/docs_check.py](tools/docs_check.py) | Checker and index generator (Python 3 standard library) |
 
 ## Add to a new project

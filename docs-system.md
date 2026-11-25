@@ -85,6 +85,8 @@ docs/
     ├── decisions.md           decision log (ADR-lite), append-only
     ├── todo.md                open work, known issues, questions for the owner
     ├── features/<name>.md     one per business feature: the rules, across all subprojects
+    ├── contracts/<name>.md    another team's spec (an API contract), kept verbatim
+    ├── testing/<feature>.md   manual test plans: data, setup, cases, status
     └── <subproject>/          one folder per app/service/package
         ├── README.md          stack, structure, conventions, commands, how-tos, gotchas
         └── <topic>.md         reference: API, data model, screens, pages, …
@@ -141,7 +143,9 @@ max_lines: 800              # optional: a log meant to grow (decisions.md) raise
 | Reference | `project/<sub>/<topic>.md` | API, data model, configuration — tables mirroring the code | none |
 | Decision log | `project/decisions.md` | why: context, decision, consequences | [decisions.md](templates/decisions.md) |
 | Todo | `project/todo.md` | open work, known issues, owner questions | [todo.md](templates/todo.md) |
-| Ops | `project/development.md`, `deployment.md` | how to run, deploy, restore, troubleshoot | none |
+| Ops | `project/development.md`, `deployment.md` | how to run, debug, deploy, restore, troubleshoot | none |
+| Contract | `project/contracts/<name>.md` | another team's spec, verbatim and in its own language, with front matter added | none |
+| Test plan | `project/testing/<feature>.md` | manual checks: test data, setup, cases with exact expected results, the status of each case | [test-plan.md](templates/test-plan.md) |
 
 ## What goes where
 
@@ -151,6 +155,9 @@ max_lines: 800              # optional: a log meant to grow (decisions.md) raise
 | What the product does (a business rule, a state machine, a limit) | `features/<feature>.md` |
 | How a subproject is built, its conventions, how to add a thing | `<sub>/README.md` |
 | An exact contract: endpoint, table, enum, route, screen | `<sub>/<reference>.md` |
+| Another team's API contract or a vendor spec, as received | `contracts/<name>.md`, verbatim; where the project differs from it goes in the feature doc |
+| How to check a feature by hand, and which cases pass | `testing/<feature>.md` |
+| A trap and how it was solved: symptom, cause, fix, proof, what did not work | the subproject README's gotchas, or a gotchas doc beside it; the code keeps a one-line comment pointing there |
 | Why X and not Y; anything the owner decided | `decisions.md` |
 | Work not done, a known bug, an unknown, an owner question | `todo.md` |
 | Local setup, ports, data restore; environments and deploy | `development.md` / `deployment.md` |
@@ -249,6 +256,7 @@ gap found while working, even when it is not fixed in this task.
 ## Writing style
 
 - English (the product's UI language only inside quoted UI copy, verbatim).
+  A contract received from another team keeps its own language.
 - Present tense, active voice, short sentences. Facts, not narrative.
 - Rule first, then the reason in one clause, linking the decision.
 - Tables for enumerations (endpoints, fields, routes, states); bullets for
@@ -256,6 +264,8 @@ gap found while working, even when it is not fixed in this task.
 - Exact names: files, symbols, routes, enum values, settings, UI strings.
 - Absolute dates (`2026-11-24`), never "recently" or "now".
 - Mark what the owner has not confirmed and add a todo item for it.
+- A gotcha gives the symptom as it shows, the cause, the fix, how the fix was
+  proven, and what did not work, so nobody tries it again.
 - No secrets, no personal data, no filler, no marketing, no emoji.
 
 ## Sizes
@@ -306,13 +316,16 @@ stand, set `verified`, and report what changed and what needs the owner.
       package manifests), existing docs (`CLAUDE.md`, `AGENTS.md`, READMEs,
       `docs/`), auto memory, TODO comments.
    2. Creates `docs/project/` from the templates: overview, architecture,
-      development, deployment, decisions, todo, one folder per subproject.
+      development, deployment, decisions, todo, one folder per subproject;
+      contracts and test plans when the project has them.
    3. Fills each subproject from the code: structure, conventions, commands;
       every screen or page; every endpoint, model and job.
    4. Writes a feature doc per business area from the code that enforces it.
    5. Moves existing docs into the structure (`git mv`), merges duplicates,
       fixes code comments that point at old paths, and leaves a one-line
-      pointer README where humans expect one.
+      pointer README where humans expect one. Docs that were never committed
+      (local only, or gitignored) are first copied outside the repository:
+      git has no history of them, and the move rewrites them.
    6. Collects decisions from existing notes (only clear ones) and todo items
       from gaps, TODO comments and contradictions found.
    7. Writes `CLAUDE.md` from `templates/claude-root.md`, adds the index

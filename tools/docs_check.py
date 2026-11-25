@@ -45,6 +45,8 @@ GROUP_TITLES = {
     "global": "Global — portable, identical in every project",
     "project": "Project",
     "project/features": "Features — business rules across all subprojects",
+    "project/contracts": "Contracts — other teams' specs, verbatim",
+    "project/testing": "Test plans — manual checks",
 }
 
 LINK_RE = re.compile(r"!?\[(?:[^\]\\]|\\.)*\]\(\s*<?([^)\s>]+)>?(?:\s+\"[^\"]*\")?\s*\)")

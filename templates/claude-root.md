@@ -37,6 +37,7 @@ specified in [docs/global/docs-system.md](docs/global/docs-system.md).
 
 ## Rules for every task
 
+- {Who commits, e.g. "Never commit, push or stage; the owner reviews the diff and commits."}
 - {A cross-cutting hard rule, one line, with a link to the doc that explains it.}
 
 ## Docs index
