@@ -18,6 +18,9 @@ specified in [docs/global/docs-system.md](docs/global/docs-system.md).
   `python3 docs/global/tools/docs_check.py` (`--fix` regenerates the index).
 - Store something in auto memory only when the user asks; project knowledge
   goes in the docs.
+- `docs/global/` is the shared docs kit, a git submodule: change it only to
+  improve the kit for every project ([how](docs/global/README.md#update-the-kit)).
+  Empty after a clone: run `git submodule update --init`.
 
 ## Repo map
 

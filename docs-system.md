@@ -12,8 +12,10 @@ rule, decision and open question. The agent keeps them current as part of
 every task, so a new session starts from the docs instead of re-reading the
 codebase.
 
-This file and the rest of `docs/global/` are project-agnostic. Copy the folder
-into any repository and follow [Bootstrap](#bootstrap-in-a-new-project).
+This file and the rest of `docs/global/` are project-agnostic. The kit lives
+in its own repository; add it to any repository as a git submodule at
+`docs/global/` ([README](README.md#add-to-a-new-project)) and follow
+[Bootstrap](#bootstrap-in-a-new-project).
 
 ## Where the ideas come from
 
@@ -70,7 +72,7 @@ into any repository and follow [Bootstrap](#bootstrap-in-a-new-project).
 CLAUDE.md                      always loaded: identity, docs rules, index, commands, universal rules
 .claude/rules/*.md             optional: path-scoped pointers, loaded when matching files are touched
 docs/
-├── global/                    portable kit — never project facts
+├── global/                    portable kit, a git submodule — never project facts
 │   ├── README.md              what the kit is and how to install it
 │   ├── docs-system.md         this spec
 │   ├── templates/             a starting point for every doc type
@@ -296,7 +298,8 @@ stand, set `verified`, and report what changed and what needs the owner.
 
 ## Bootstrap in a new project
 
-1. Copy `docs/global/` into the repository unchanged.
+1. Add the kit, unchanged, as a git submodule at `docs/global/`
+   ([how](README.md#add-to-a-new-project)).
 2. Ask the agent: "Set up the docs system from `docs/global/docs-system.md`."
 3. The agent then:
    1. Surveys the repo: subprojects, stacks, commands (Makefile, scripts,
